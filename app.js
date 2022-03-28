@@ -1,5 +1,3 @@
-console.log('first');
-
 const row = document.querySelector('.row');
 
 const blogData = [
@@ -34,10 +32,9 @@ const blogData = [
 blogData.forEach((element) => {
 	const childDIV = document.createElement('div');
 	childDIV.classList.add('col-md-4');
-	console.log(element);
 
 	childDIV.innerHTML = `
-    <div class="blog-card ">
+    <div class="blog-card m-3 p-3">
         <h4 class="title-font">${element.title}</h4>
         <p class="lead">${element.subTitle}</p>
         <p class="lead">${element.content}</p>
@@ -47,3 +44,19 @@ blogData.forEach((element) => {
 
 	row.appendChild(childDIV);
 });
+
+const blogCard = document.getElementsByClassName('blog-card');
+
+for (let i = 0; i <= blogCard.length; i++) {
+	const button = blogCard[i];
+
+	button.addEventListener('click', function (event) {
+		const buttonClicked = event.target;
+
+		console.log(buttonClicked);
+	});
+}
+
+// blogCard.addEventListener('click', function () {
+// 	console.log('first');
+// });
