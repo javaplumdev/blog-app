@@ -1,62 +1,35 @@
-const row = document.querySelector('.row');
+import { blogData } from './blogData.js';
 
-const blogData = [
-	{
-		title: 'Ang pogi ko',
-		subTitle: 'Sample',
-		content: 'lorem ipsum doloraaaaaaaaaa',
-	},
-	{
-		title: 'Ang pogi ko',
-		subTitle: 'Sample',
-		content: 'lorem ipsum doloraaaaaaaaaa',
-	},
-	{
-		title: 'Ang pogi ko',
-		subTitle: 'Sample',
-		content: 'lorem ipsum doloraaaaaaaaaa',
-	},
-	{
-		title: 'Ang pogi ko',
-		subTitle: 'Sample',
-		content: 'lorem ipsum doloraaaaaaaaaa',
-	},
-	{
-		title: 'Ang tumae labas ipot',
-		subTitle: 'Sample',
-		content: 'lorem ipsum doloraaaaaaaaaa',
-		content1: 'lorem ipsum doloraaaaaaaaaa',
-	},
-];
+const row = document.querySelector('.row');
 
 blogData.forEach((element) => {
 	const childDIV = document.createElement('div');
 	childDIV.classList.add('col-md-4');
 
+	let newStr = element.content.slice(0, 5);
+
 	childDIV.innerHTML = `
-    <div class="blog-card m-3 p-3">
-        <h4 class="title-font">${element.title}</h4>
-        <p class="lead">${element.subTitle}</p>
-        <p class="lead">${element.content}</p>
-        <p class="lead">${element.content1}</p>
-    </div>
-    `;
+		<div class="blog-card m-3 p-3">
+			<img class="img-fluid" src=${element.image} />
+			<h4 class="title-font">${element.title}</h4>
+			<p class="lead">${element.subTitle}</p>
+			<p class="lead">${newStr}...</p>
+			<button class="readBtn btn btn-dark">Read more</button>
+		</div>
+	`;
 
 	row.appendChild(childDIV);
 });
 
-const blogCard = document.getElementsByClassName('blog-card');
+const blogBtn = document.getElementsByClassName('readBtn');
 
-for (let i = 0; i <= blogCard.length; i++) {
-	const button = blogCard[i];
+for (let i = 0; i <= blogBtn.length; i++) {
+	const button = blogBtn[i];
 
 	button.addEventListener('click', function (event) {
 		const buttonClicked = event.target;
-
+		localStorage.setItem('keyId', blogData[i].key);
+		location.href = `blog.html`;
 		console.log(buttonClicked);
 	});
 }
-
-// blogCard.addEventListener('click', function () {
-// 	console.log('first');
-// });
